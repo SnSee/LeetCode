@@ -43,8 +43,26 @@ for (int i = 0; i < len; i++) {
 #include <string.h>
 int removeElement(int* nums, int numsSize, int val){
     int newSize = 0;
+    int i = 0;
+    int space = 0;
+    while(i < numsSize){
+        while(i < numsSize && nums[i] != val){
+            nums[newSize++] = nums[i++];
+            continue;
+        }
+        ++i;
+    }
     return newSize;
 }
 int main(int argc, const char *argv[]){
+    // int nums[] = {3, 2, 2, 3};
+    int nums[] = {0,1,2,2,3,0,4,2};
+    int size = sizeof(nums)/sizeof(nums[0]);
+    int val = 2;
+    size = removeElement(nums, size, val);
+    for(int i = 0; i < size; ++i){
+        printf("%d, ", nums[i]);
+    }
+    printf("\n");
     return 0;
 }
