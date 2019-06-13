@@ -1,6 +1,6 @@
 src = $(wildcard ./*.c)
 target = $(patsubst %.c, %, $(src))
-CC = gcc
+CC = gcc -g -fsanitize=address
 FLAGS = -o
                                                                                                                                                       
 all:$(target)

@@ -76,3 +76,6 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
 
     return head;
 }
+int main(){
+    return 0;
+}
