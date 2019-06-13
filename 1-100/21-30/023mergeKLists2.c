@@ -1,25 +1,29 @@
 /*
-将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
-
-示例：
-
-输入：1->2->4, 1->3->4
-输出：1->1->2->3->4->4
+合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
+示例:
+输入:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+输出: 1->1->2->3->4->4->5->6
 */
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     struct ListNode *next;
- * };
- */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct ListNode{
     int val;
     struct ListNode *next;
 };
+void printList(struct ListNode *node){
+    while(node){
+        printf("%d, ", node->val);
+        node = node->next;
+    }
+    printf("\n");
+}
 
 int firstLT(struct ListNode *n1, struct ListNode *n2){
     if(n1 == NULL){
@@ -75,6 +79,33 @@ struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2){
     }
     return head;
 }
-int main(){
+struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
+    if(!listsSize){
+        return NULL;
+    }
+    struct ListNode *curList = lists[0];
+    for(int i = 1; i < listsSize; ++i){
+        curList = mergeTwoLists(curList, lists[i]);
+    }
+    return curList;
+}
+int main(int argc, const char *argv[]){
+    int n = 3;
+    // 构建链表
+    struct ListNode l13 = {5, NULL};
+    struct ListNode l12 = {4, &l13};
+    struct ListNode l11 = {1, &l12};
+
+    struct ListNode l23 = {4, NULL};
+    struct ListNode l22 = {3, &l23};
+    struct ListNode l21 = {1, &l22};
+
+    struct ListNode l32 = {6, NULL};
+    struct ListNode l31 = {2, &l32};
+
+    struct ListNode *lists[3] = {&l11, &l21, &l31};
+    struct ListNode *newHead;
+    newHead = mergeKLists(lists, 3);
+    printList(newHead); 
     return 0;
 }
