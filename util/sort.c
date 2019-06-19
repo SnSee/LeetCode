@@ -1,4 +1,5 @@
-// 快速排序(从小到大)
+#include "stack.h"
+// 快速排序递归版(从小到大)
 void sort(int *left, int *right){
     if(left >= right){
         return;
@@ -22,4 +23,30 @@ void sort(int *left, int *right){
     *start = pivot; // 此时start和end应该是同一个位置
     sort(left, start - 1);
     sort(start + 1, right);
+}
+
+// 快速排序栈版
+void sort_by_stack(int *left, int *right){
+    if(left >= right){
+        return;
+    }
+    // 基准值
+    int *start = left, *end = right;
+    int pivot = *(left + (right - left) / 2);
+    *(left + (right - left) / 2) = *left;
+    *left = pivot;
+    while(start < end){
+        break;
+    }
+    SimpleStack stack;
+    initStack(&stack, 100);
+    printf("init successfully\n");
+    free(stack.stack);
+    stack.stack = NULL;
+}
+
+int main(int argc, char *argv[]){
+
+    sort_by_stack(NULL, NULL);
+    return 0;
 }

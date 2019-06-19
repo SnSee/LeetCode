@@ -20,6 +20,9 @@
 这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。
 
 */
+
+
+// 暴力法
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,49 +33,29 @@ int strStr(char * haystack, char * needle){
     if(NULL == haystack){
         return -1;
     }
-    int count = 0;
     int hlen = strlen(haystack);
     int plen = strlen(needle);
+    int j = 0;
     if(hlen < plen){
         return -1;
     }
-    int hi = plen - 1;
-    int pi = plen - 1;
-    while(hi < hlen){
-        if(pi >= 0){
-            if(haystack[hi] == needle[pi]){
-                ++count;
-                if(count == plen){
-                    return hi;
-                }
-                if(count == plen - pi){
-                    --hi;
-                    --pi;
-                }
-                else{
-                    hi = hi + plen - pi - 1;
-                    pi = plen - 1;
-                    count = 0;
-                }
-            }
-            else{
-                --pi;
-                count = 0;
+    for(int i = 0; i <= hlen - plen; ++i){
+        for(j = 0; j < plen; ++j){
+            if(haystack[i+j] != needle[j]){
+                break;
             }
         }
-        else{
-            pi = plen - 1;
-            hi = hi + plen;
-            count = 0;
+        if(j == plen){
+            return i;
         }
-    }
+    } 
     return -1;
 }
 int main(int argc, const char *argv[]){
-    // char haystack[] = "aacbddafasdfacbdc";
-    // char needle[] = "acbdc";
-    char haystack[] = "";
-    char needle[] = "";
+    char haystack[] = "aacbddafasdfacbdc";
+    char needle[] = "acbdc";
+    // char haystack[] = "";
+    // char needle[] = "";
     int pos = strStr(haystack, needle);
     printf("pos = %d\n", pos);
     return 0;

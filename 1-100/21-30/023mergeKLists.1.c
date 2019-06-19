@@ -30,6 +30,9 @@ void printList(struct ListNode *node){
 indexOrder *pHead = NULL;
 int nullCount = 0;
 int init = 0;
+int compareNodeLE(struct ListNode *n1, struct ListNode *n2){
+    return 0;
+}
 struct ListNode *insertNodeByOrder(struct ListNode *head, struct ListNode *node){
     if(NULL == node){
         return head;
@@ -70,6 +73,7 @@ void initOrderNodes(struct ListNode **nodes, int size){
     }
 }
 int findLowestNode(struct ListNode **nodes, int size){
+    return 0;
 }
 struct ListNode* mergeKLists(struct ListNode** lists, int listsSize){
     if(!listsSize){
