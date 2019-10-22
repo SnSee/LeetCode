@@ -7,8 +7,7 @@
 输出: true
 示例 2:
 
-输入: -121
-输出: false
+输入: -121 输出: false
 解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。
 示例 3:
 
@@ -22,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef enum Bool{
+typedef enum Bool{ 
     false, true
 }bool;
 
